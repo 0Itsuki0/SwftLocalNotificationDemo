@@ -11,6 +11,10 @@
 		9863EFF02C41F0770034EE50 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9863EFEF2C41F0770034EE50 /* ContentView.swift */; };
 		9863EFF22C41F0790034EE50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9863EFF12C41F0790034EE50 /* Assets.xcassets */; };
 		9863EFF52C41F0790034EE50 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9863EFF42C41F0790034EE50 /* Preview Assets.xcassets */; };
+		9863EFFC2C41F08C0034EE50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9863EFFB2C41F08C0034EE50 /* AppDelegate.swift */; };
+		9863EFFE2C41F19C0034EE50 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9863EFFD2C41F19C0034EE50 /* NotificationManager.swift */; };
+		9863F0032C420C750034EE50 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9863F0022C420C750034EE50 /* README.md */; };
+		9863F0052C42386D0034EE50 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9863F0042C42386D0034EE50 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		9863EFEF2C41F0770034EE50 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9863EFF12C41F0790034EE50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9863EFF42C41F0790034EE50 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9863EFFB2C41F08C0034EE50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9863EFFD2C41F19C0034EE50 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		9863F0022C420C750034EE50 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9863F0042C42386D0034EE50 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +43,8 @@
 		9863EFE12C41F0770034EE50 = {
 			isa = PBXGroup;
 			children = (
+				9863F0022C420C750034EE50 /* README.md */,
+				9863F0042C42386D0034EE50 /* .gitignore */,
 				9863EFEC2C41F0770034EE50 /* LocalNotificationDemo */,
 				9863EFEB2C41F0770034EE50 /* Products */,
 			);
@@ -51,8 +61,10 @@
 		9863EFEC2C41F0770034EE50 /* LocalNotificationDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9863EFFD2C41F19C0034EE50 /* NotificationManager.swift */,
 				9863EFED2C41F0770034EE50 /* LocalNotificationDemoApp.swift */,
 				9863EFEF2C41F0770034EE50 /* ContentView.swift */,
+				9863EFFB2C41F08C0034EE50 /* AppDelegate.swift */,
 				9863EFF12C41F0790034EE50 /* Assets.xcassets */,
 				9863EFF32C41F0790034EE50 /* Preview Content */,
 			);
@@ -125,6 +137,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9863F0052C42386D0034EE50 /* .gitignore in Resources */,
+				9863F0032C420C750034EE50 /* README.md in Resources */,
 				9863EFF52C41F0790034EE50 /* Preview Assets.xcassets in Resources */,
 				9863EFF22C41F0790034EE50 /* Assets.xcassets in Resources */,
 			);
@@ -137,7 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9863EFFC2C41F08C0034EE50 /* AppDelegate.swift in Sources */,
 				9863EFF02C41F0770034EE50 /* ContentView.swift in Sources */,
+				9863EFFE2C41F19C0034EE50 /* NotificationManager.swift in Sources */,
 				9863EFEE2C41F0770034EE50 /* LocalNotificationDemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,8 +288,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LocalNotificationDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location Usage needed for location based notification";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -300,8 +318,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LocalNotificationDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location Usage needed for location based notification";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
