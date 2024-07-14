@@ -28,6 +28,7 @@ struct ContentView: View {
                 Text("UNTimeIntervalNotificationTrigger\nIn 5 seconds!")
             })
             
+            
             RoundedBorderButton(action: {
                 Task {
                     await notificationManager.registerLocationNotification()
@@ -36,9 +37,17 @@ struct ContentView: View {
                 Text("UNLocationNotificationTrigger\nEntering!")
             })
             
+            RoundedBorderButton(action: {
+                Task {
+                    await notificationManager.registerTimeIntervalNotificationWithCustomAction()
+                }
+            }, label: {
+                Text("Custom Actionable Timer\nIn 1 seconds!")
+            })
+            
             
             RoundedBorderButton(action: {
-                notificationManager.removePendingNotifications()
+                notificationManager.removeAllNotifications()
             }, label: {
                 Text("Cancel All")
             })

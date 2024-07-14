@@ -11,8 +11,104 @@ import CoreLocation
 class NotificationManager {
     private let notificationCenter = UNUserNotificationCenter.current()
     private let manager = CLLocationManager()
+    
+    private let timerActionableIdentifier = "TIMER_ACTION"
+    private let rescheduleActionIdentifier = "RESCHEDULE_ACTION"
+    private let dismissActionIdentifier = "DISMISS_ACTION"
+    
+    // Request user permissions
+    func requestNotificationPermission() {
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) {
+            granted, error in
+            print("Permission granted: \(granted)")
+        }
+    }
+    
+    // Declare custom Actionable Notification Types
+    func declareCustomTimerActionable() {
+        let rescheduleAction = UNNotificationAction(identifier: rescheduleActionIdentifier,
+                                                    title: "Schedule Again",
+                                                    options: [])
+        let dismissAction = UNNotificationAction(identifier: dismissActionIdentifier,
+                                                 title: "Dismiss",
+                                                 options: [])
+        
+        // Define the notification type
+        let timerActionableCategory = UNNotificationCategory(
+            identifier: timerActionableIdentifier,
+            actions: [rescheduleAction, dismissAction],
+            intentIdentifiers: [],
+            hiddenPreviewsBodyPlaceholder: "",
+            options: .customDismissAction
+        )
+        // Register the notification type.
+        notificationCenter.setNotificationCategories([timerActionableCategory])
+    }
+    
+    
+    func handleNotificationReceived(_ response: UNNotificationResponse) async {
+        let content = response.notification.request.content
+        
+        if content.categoryIdentifier == timerActionableIdentifier {
+            print("custom timer notification received")
+            switch response.actionIdentifier {
+            case rescheduleActionIdentifier:
+                // remove the reminder timer
+                removeAllNotifications()
+                // schedule again
+                await registerTimeIntervalNotificationWithCustomAction()
+                break
+                
+            case dismissActionIdentifier:
+                // remove the reminder timer
+                removeAllNotifications()
+                break
+                
+            case UNNotificationDefaultActionIdentifier,
+            UNNotificationDismissActionIdentifier:
+                break
+                
+            default:
+                break
+            }
+            
+        } else {
+            print("other notification: \(content)")
+            
+        }
+        
+    }
+    
+    func willPresentNotification(_ notification: UNNotification) async -> UNNotificationPresentationOptions {
+        let content = notification.request.content
+        
+        if content.categoryIdentifier == timerActionableIdentifier {
+            print("custom timer notification received")
+            await scheduleReminderTimer()
+            
+        } else {
+            print("other notification: \(content)")
+        }
+        return [[.badge, .sound, .banner, .list]]
 
-    func removePendingNotifications() {
+    }
+    
+    private func scheduleReminderTimer() async {
+        let content = UNMutableNotificationContent()
+        content.title = "Reminder"
+        content.body = "1 Seconds pass!"
+        content.sound = .default
+        content.categoryIdentifier = timerActionableIdentifier
+
+        // reminder notification in 3 seconds
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        await registerNotificationRequest(content: content, trigger: trigger)
+
+    }
+
+
+    func removeAllNotifications() {
+        notificationCenter.removeAllDeliveredNotifications()
         notificationCenter.removeAllPendingNotificationRequests()
     }
     
@@ -51,6 +147,23 @@ class NotificationManager {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         await registerNotificationRequest(content: content, trigger: trigger)
     }
+    
+    // custom actionable on Push notification Tapped
+    func registerTimeIntervalNotificationWithCustomAction() async {
+        print("register Time Interval Notification")
+        
+        // content
+        let content = UNMutableNotificationContent()
+        content.title = "TimeIntervalNotification"
+        content.body = "1 Seconds pass!"
+        content.sound = .default
+        content.categoryIdentifier = timerActionableIdentifier
+
+        // notification in 1 seconds
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        await registerNotificationRequest(content: content, trigger: trigger)
+    }
+    
     
     func registerLocationNotification() async {
         let status = manager.authorizationStatus
