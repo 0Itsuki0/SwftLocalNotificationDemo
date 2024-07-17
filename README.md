@@ -15,4 +15,4 @@ Timer notification with the following Custom Actionable
 
 If none of the action provided is selected, a reminder timer will be scehduled.
 
-For Further Detail, please refer to S[Swift/iOS: Custom Actionable Push Notification]()
+For Further Detail, please refer to S[Swift/iOS: Custom Actionable Push Notification](https://medium.com/@itsuki.enjoy/swift-ios-custom-actionable-push-notification-01e3e294265e)
